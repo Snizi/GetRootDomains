@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -18,10 +17,10 @@ with open(args.subdomains) as f:
     
     for I in stripped_subdomains:
         string = I.split('.')
-        duplicated_domains.append(string[-2])
+        duplicated_domains.append(string[-2] + '.' + string[-1])
 
-final_domains = list(dict.fromkeys(duplicated_domains))
+root_domains = list(dict.fromkeys(duplicated_domains))
 
-with open(args.output, 'w') as f:
-    for domain in final_domains:
-        f.write(domain+'\n')
+with open(args.output_file, 'w') as f:
+    for domain in root_domains:
+        f.write(domain + '\n')
